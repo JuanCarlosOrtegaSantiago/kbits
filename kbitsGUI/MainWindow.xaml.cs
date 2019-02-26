@@ -36,6 +36,7 @@ namespace kbitsGUI
             txtNumEntero.IsEnabled = true;
             txtNumEntero.Clear();
             txtnumBits.Clear();
+            lblResul.Content = "";
         }
 
         private void btnCalcular_Click(object sender, RoutedEventArgs e)
@@ -74,7 +75,7 @@ namespace kbitsGUI
 
             if (numerodebit <= bits.Count())
             {
-                MessageBox.Show("El numero de bits ingresado no es correcto", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("El numero de bits ingresado no es correcto necesitas almenos "+(bits.Count()+1)+" bits", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -83,6 +84,12 @@ namespace kbitsGUI
                     CodigoBinario += "0";
                 else
                     CodigoBinario += "1";
+
+                if (numerodebit > bits.Count() + 1)
+                {
+                    for (int i = 0; i < numerodebit- (bits.Count() + 1); i++)
+                        CodigoBinario += "0";
+                }
 
                 for (int i = bits.Count(); i > 0; i--)
                     CodigoBinario += bits[i-1];
